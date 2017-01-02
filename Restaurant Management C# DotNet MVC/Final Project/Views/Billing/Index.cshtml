@@ -1,0 +1,143 @@
+﻿@model IEnumerable<DataLayer.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Billing</h2>
+</center>
+<br>
+@using (Html.BeginForm("AddToBill", "Billing", FormMethod.Post))
+{
+    <table border="1">
+        <tr>
+            <td height="40px" valign="middle" align="center" width="700px">
+                Enter Product ID <input id="productId" name="productId" type="text" runat="server" /> &nbsp &nbsp
+                Enter Quantity <input id="productQuantity" name="productQuantity" type="text" runat="server" /> &nbsp <input id="Button1" type="submit" value="Add to Bill" runat="server" />
+            </td>
+        </tr>
+    </table>
+}
+<br>
+<table cellspacing="20px" border="5px">
+    <tr>
+        <th>
+            Products
+        </th>
+        <th>
+            Bill
+        </th>
+    </tr>
+    <tr>
+        <td valign="top">
+
+            <table border="2">
+                <tr>
+                    <th>
+                        ProductID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="80px" align="center">
+                            @Html.DisplayFor(modelItem => item.ProductID)
+                        </td>
+                        <td width="200px" align="center">
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td width="130px" align="center">
+                            @Html.DisplayFor(modelItem => item.ProductCategory)
+                        </td>
+                        <td width="130px" align="center">
+                            @Html.DisplayFor(modelItem => item.ProductPrice)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </td>
+
+        <td valign="top">
+            <table border="1">
+                <tr>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+
+                    <th>
+                        Subtotal
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                
+
+                    @foreach (DataLayer.Models.Bill b in ViewBag.billList)
+                    {
+                        <tr>
+                        <td width="200px" align="center">@b.ProductName</td>
+                        <td width="100px" align="center">@b.Price</td>
+                        <td width="100px" align="center">@b.Quantity</td>
+                        <td width="100px" align="center">@b.Subtotal</td>
+                        <td width="100px" align="center">@Html.ActionLink("Delete", "Delete", new { id = b.ID })</td>
+                        </tr>
+                    }
+                
+
+                <tr>
+                    <td colspan="3"></td>
+
+                    <td colspan="2" align="left" valign="middle" height="70px">
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total : @ViewBag.total<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Vat : @ViewBag.vat <br/>
+                        &nbsp;Payable : @ViewBag.payable
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="6" valign="center" align="center" height="50px">
+                        <input id="Button1" type="button" value="Print Bill" onclick="location.href='@Url.Action("PrintBill", "Billing")'" />
+                        <input id="Button2" type="button" value="New Bill" onclick="location.href='@Url.Action("NewBill", "Billing")'" />
+
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+<h4>Go to</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+    <li><a href="/Password/Index">Change Password</a></li>
+    <li><a href="/Billing/Index">Billing</a></li>
+    <li><a href="/Sales/Index">Sales</a></li>
+</ul>

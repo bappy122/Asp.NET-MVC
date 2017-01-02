@@ -1,0 +1,108 @@
+﻿@using DataLayer
+@model IEnumerable<DataLayer.Models.Sales>
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Sales Management</h2>
+</center>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <table border="1" width="450px" align="center">
+        <th>
+            Search
+        </th>
+
+        <tr>
+            <td style="padding: 5px" align="center">
+                <input style="width: 380px" placeholder="Enter text to search..." width="250px" id="searchKey" name="searchKey" type="text" runat="server" /> <input id="Submit1" formaction="@Url.Action("Search","Sales")" type="submit" value="Filter" runat="server" />
+            </td>
+
+        </tr>
+        <tr>
+            <td align="center" style="padding: 4px">
+                <input id="Button1" title="At first Filter, Then Click Print PDF. " formaction="@Url.Action("GenerateReport","Sales")" type="submit" value="Print PDF" /> <input id="Submit1" formaction="@Url.Action("Refresh","Sales")" type="submit" value="Refresh" />
+            </td>
+        </tr>
+    </table>
+}
+
+<center>
+    <h3>Sales Table</h3>
+</center>
+<table border="2">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salesman)
+        </th>
+    </tr>
+    @{
+        double total = 0;
+
+        foreach (var item in Model)
+        {
+
+            total += Convert.ToDouble(item.Subtotal);
+            <tr>
+                <td width="220" align="center">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Subtotal)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td width="170" align="center">
+                    @Html.DisplayFor(modelItem => item.Salesman)
+                </td>
+            </tr>
+        }
+    }
+
+    <tr>
+        <td colspan="3"></td>
+        <td><b>Total: @total</b></td>
+        <td colspan="3"></td>
+    </tr>
+
+</table>
+<h4>Options</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Password/Index">Change Password</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+
+    <li><a href="/Billing/Index">Billing</a></li>
+</ul>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DataLayer.Models.LoginTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage User Accounts</h2>
+
+<table border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountStatus)
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="230px" align="center">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td width="150px" align="center">
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td width="150px" align="center">
+                *******
+            </td>
+            <td width="150px" align="center">
+                @Html.DisplayFor(modelItem => item.UserType)
+            </td>
+            <td width="150px" align="center">
+                @Html.DisplayFor(modelItem => item.AccountStatus)
+            </td>
+            <td width="220px" align="center">
+                @Html.ActionLink("Activate", "Activate", new { id = item.id }) |
+                @Html.ActionLink("Deactivate", "Deactivate", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+    <h4>Go to</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+    <li><a href="/Password/Index">Change Password</a></li>
+    <li><a href="/Billing/Index">Billing</a></li>
+    <li><a href="/Sales/Index">Sales</a></li>
+</ul>

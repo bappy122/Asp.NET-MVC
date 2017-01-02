@@ -1,0 +1,65 @@
+﻿@model DataLayer.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <p>
+            <input type="submit" value="Register" />
+        </p>
+    </fieldset>
+}
+<a href="/Start/Index"> Back</a>
+<h4>Go to</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+    <li><a href="/Password/Index">Change Password</a></li>
+    <li><a href="/Billing/Index">Billing</a></li>
+    <li><a href="/Sales/Index">Sales</a></li>
+</ul>

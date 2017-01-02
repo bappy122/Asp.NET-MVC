@@ -1,0 +1,61 @@
+﻿@model DataLayer.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.ProductID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductCategory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductCategory)
+            @Html.ValidationMessageFor(model => model.ProductCategory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPrice)
+            @Html.ValidationMessageFor(model => model.ProductPrice)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Products", "Index")
+</div>
+
+<h4>Go to</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+    <li><a href="/Billing/Index">Billing</a></li>
+    <li><a href="/Sales/Index">Sales</a></li>
+</ul>

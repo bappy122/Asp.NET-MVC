@@ -1,0 +1,54 @@
+﻿@model DataLayer.Models.ChangePassword
+
+@{
+    ViewBag.Title = "Change";
+}
+
+<h2>Change Password</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Change Password</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrentPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CurrentPassword)
+            @Html.ValidationMessageFor(model => model.CurrentPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NewPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NewPassword)
+            @Html.ValidationMessageFor(model => model.NewPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RepetPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RepetPassword)
+            @Html.ValidationMessageFor(model => model.RepetPassword)
+        </div>
+
+        <p>
+            <input type="submit" value="Change" />
+        </p>
+    </fieldset>
+}
+<h4>Go to</h4>
+<ul>
+    <li><a href="/Logout/Index">Logout</a></li>
+    <li><a href="/Admin/Index">Admin Home</a></li>
+    <li><a href="/AccountRequest/Index">Account Requests</a></li>
+    <li><a href="/Accounts/Index">Manage Accounts</a></li>
+    <li><a href="/Product/Index">Manage Products</a></li>
+    <li><a href="/Billing/Index">Billing</a></li>
+    <li><a href="/Sales/Index">Sales</a></li>
+</ul>
